@@ -1,0 +1,92 @@
+[
+  {
+    "tipo": "buzoneo",
+    "fecha": "2026-10-25",
+    "calles": "19909785 256156569 361459644 444284310 238828438 256156567 256156568 251509685",
+    "lat": "",
+    "lon": "",
+    "cantidad": 300,
+    "nota": "Todos los portales hasta la Alameda"
+  },
+  {
+    "tipo": "carteles",
+    "fecha": "2026-10-24",
+    "calles": "19909785 256156569 361459644 444284310 238828438 256156567 256156568 251509685",
+    "lat": "",
+    "lon": "",
+    "cantidad": 12,
+    "nota": ""
+  },
+  {
+    "tipo": "carteles",
+    "fecha": "2026-10-20",
+    "calles": "140890520 762373678",
+    "lat": "",
+    "lon": "",
+    "cantidad": 6,
+    "nota": ""
+  },
+  {
+    "tipo": "buzoneo",
+    "fecha": "2026-10-10",
+    "calles": "82031686 362224767 362384443 331366853 362224760 362224764",
+    "lat": "",
+    "lon": "",
+    "cantidad": 150,
+    "nota": ""
+  },
+  {
+    "tipo": "buzoneo",
+    "fecha": "2026-10-26",
+    "calles": "29471907 340055010 786019235",
+    "lat": "",
+    "lon": "",
+    "cantidad": 200,
+    "nota": ""
+  },
+  {
+    "tipo": "carteles",
+    "fecha": "2026-10-22",
+    "calles": "444286271",
+    "lat": "",
+    "lon": "",
+    "cantidad": 8,
+    "nota": "Bares y una librería"
+  },
+  {
+    "tipo": "carteles",
+    "fecha": "2026-09-30",
+    "calles": "18616007",
+    "lat": "",
+    "lon": "",
+    "cantidad": 5,
+    "nota": ""
+  },
+  {
+    "tipo": "panfletos",
+    "fecha": "2026-10-26",
+    "calles": "",
+    "lat": 37.3912,
+    "lon": -5.9905,
+    "cantidad": 100,
+    "nota": "Mercadillo de la Alfalfa"
+  },
+  {
+    "tipo": "panfletos",
+    "fecha": "2026-10-19",
+    "calles": "",
+    "lat": 37.3979,
+    "lon": -5.9942,
+    "cantidad": 250,
+    "nota": ""
+  },
+  {
+    "tipo": "panfletos",
+    "fecha": "2026-10-12",
+    "calles": "",
+    "lat": 37.4005,
+    "lon": -5.9872,
+    "cantidad": 80,
+    "nota": ""
+  }
+]

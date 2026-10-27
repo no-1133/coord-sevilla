@@ -1,0 +1,46 @@
+[
+  {
+    "archivo": "casco_antiguo.geojson",
+    "nombre": "Casco Antiguo"
+  },
+  {
+    "archivo": "bellavista_la_palmera.geojson",
+    "nombre": "Bellavista-La Palmera"
+  },
+  {
+    "archivo": "cerro_amate.geojson",
+    "nombre": "Cerro-Amate"
+  },
+  {
+    "archivo": "este_alcosa_torreblanca.geojson",
+    "nombre": "Este-Alcosa-Torreblanca"
+  },
+  {
+    "archivo": "macarena.geojson",
+    "nombre": "Macarena"
+  },
+  {
+    "archivo": "norte.geojson",
+    "nombre": "Norte"
+  },
+  {
+    "archivo": "san_pablo_santa_justa.geojson",
+    "nombre": "San Pablo-Santa Justa"
+  },
+  {
+    "archivo": "sur.geojson",
+    "nombre": "Sur"
+  },
+  {
+    "archivo": "los_remedios.geojson",
+    "nombre": "Los Remedios"
+  },
+  {
+    "archivo": "nervion.geojson",
+    "nombre": "Nervión"
+  },
+  {
+    "archivo": "triana.geojson",
+    "nombre": "Triana"
+  }
+]

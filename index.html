@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coordinación de actividades</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header>
+    <h1>Coordinación de actividades</h1>
+    <nav>
+      <a href="#mapa" class="pestana" data-vista="mapa">Mapa</a>
+      <a href="#informar" class="pestana" data-vista="informar">Informar</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="vista-mapa" class="vista">
+      <div class="filtros">
+        <div class="tipos">
+          <label><input type="checkbox" name="capa" value="carteles" checked><span class="carteles">Carteles en comercios</span></label>
+          <label><input type="checkbox" name="capa" value="buzoneo" checked><span class="buzoneo">Buzoneo</span></label>
+          <label><input type="checkbox" name="capa" value="panfletos" checked><span class="panfletos">Panfletos</span></label>
+        </div>
+        <select id="periodo" aria-label="Periodo">
+          <option value="7">Última semana</option>
+          <option value="30">Último mes</option>
+          <option value="0" selected>En cualquier momento</option>
+        </select>
+      </div>
+      <p id="aviso-mapa" class="aviso" hidden></p>
+      <div id="mapa" class="mapa"></div>
+    </section>
+
+    <section id="vista-informar" class="vista">
+      <form id="formulario" novalidate>
+        <h2>1. ¿Qué hiciste?</h2>
+        <div class="tipos">
+          <label><input type="radio" name="tipo" value="carteles"><span class="carteles">Carteles en comercios</span></label>
+          <label><input type="radio" name="tipo" value="buzoneo"><span class="buzoneo">Buzoneo</span></label>
+          <label><input type="radio" name="tipo" value="panfletos"><span class="panfletos">Panfletos</span></label>
+        </div>
+
+        <h2>2. ¿Dónde?</h2>
+        <p class="ayuda solo-nada">Elige primero qué hiciste.</p>
+        <p class="ayuda solo-calle">Toca en el mapa los tramos de calle donde lo hiciste, o busca la calle.</p>
+        <p class="ayuda solo-punto">Toca en el mapa el sitio donde repartiste los panfletos.</p>
+        <div class="fila solo-calle">
+          <input id="buscar" list="lista-calles" placeholder="Buscar calle…" autocomplete="off">
+          <datalist id="lista-calles"></datalist>
+          <button type="button" id="toda-calle" disabled>Marcar toda la calle</button>
+        </div>
+        <div class="fila solo-punto">
+          <button type="button" id="mi-ubicacion">Usar mi ubicación</button>
+        </div>
+        <div id="mapa-informar" class="mapa"></div>
+        <div class="fila">
+          <p id="seleccion"></p>
+          <button type="button" id="borrar" hidden>Borrar selección</button>
+        </div>
+
+        <h2>3. ¿Cuándo?</h2>
+        <input type="date" name="fecha" required>
+
+        <h2>4. Detalles <small>(opcional)</small></h2>
+        <label class="campo">Cantidad
+          <input type="number" name="cantidad" min="1" max="100000" inputmode="numeric"
+                 placeholder="Nº de carteles, cartas o panfletos">
+        </label>
+        <label class="campo">Nota <small>(esta información es pública)</small>
+          <textarea name="nota" maxlength="200" rows="2" placeholder="Ej.: todos los portales hasta la plaza"></textarea>
+        </label>
+
+        <button type="submit" id="enviar">Enviar</button>
+        <p id="mensaje" class="aviso" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
