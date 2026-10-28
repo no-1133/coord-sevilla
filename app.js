@@ -3,8 +3,15 @@
 const CENTRO = [37.391, -5.993];
 const LIMITES = [[37.290, -6.060], [37.470, -5.800]];  // municipio de Sevilla
 const ZOOM_SELECCION = 16;  // por debajo, tocar el mapa acerca en vez de seleccionar
-const COLORES = { carteles: "#e8710a", buzoneo: "#1a73e8", panfletos: "#188038" };
-const NOMBRES = { carteles: "Carteles en comercios", buzoneo: "Buzoneo", panfletos: "Panfletos" };
+const COLORES = { carteles: "#e8710a", carteles_calle: "#9334e6", buzoneo: "#1a73e8", panfletos: "#188038" };
+const NOMBRES = {
+  carteles: "Comercios (carteles, huelga, ...)", carteles_calle: "Carteles en la calle",
+  buzoneo: "Buzoneo", panfletos: "Panfletos",
+};
+const CANTIDADES = {  // texto de ayuda del campo Cantidad según el tipo
+  carteles: "Nº de comercios", carteles_calle: "Nº de carteles",
+  buzoneo: "Nº de cartas", panfletos: "Nº de panfletos",
+};
 
 const calles = {};     // id del tramo -> feature GeoJSON
 const porNombre = {};  // nombre de la calle -> [ids de sus tramos]
@@ -89,8 +96,14 @@ function dibujarInformes() {
   const tipos = [...document.querySelectorAll("input[name=capa]:checked")].map(c => c.value);
   const dias = Number(document.getElementById("periodo").value);
   const desde = dias ? new Date(Date.now() - dias * 864e5).toLocaleDateString("sv") : "";
-  // Buzoneo debajo (línea ancha) y carteles encima (línea fina): así se ven ambos en la misma calle
-  const orden = { buzoneo: 0, carteles: 1, panfletos: 2 };
+  // De abajo arriba: buzoneo (ancha), carteles en la calle (discontinua), comercios (fina).
+  // Así se ven todos en la misma calle
+  const orden = { buzoneo: 0, carteles_calle: 1, carteles: 2, panfletos: 3 };
+  const estilos = {
+    buzoneo: { color: COLORES.buzoneo, weight: 10, opacity: 0.55 },
+    carteles_calle: { color: COLORES.carteles_calle, weight: 8, opacity: 1, dashArray: "8 6" },
+    carteles: { color: COLORES.carteles, weight: 4, opacity: 1 },
+  };
 
   informes
     .filter(i => tipos.includes(i.tipo) && String(i.fecha) >= desde)
@@ -102,11 +115,8 @@ function dibujarInformes() {
           .addTo(capaInformes);
         return;
       }
-      const estilo = i.tipo === "buzoneo"
-        ? { color: COLORES.buzoneo, weight: 10, opacity: 0.55 }
-        : { color: COLORES.carteles, weight: 4, opacity: 1 };
       String(i.calles).split(" ").filter(id => calles[id]).forEach(id => {
-        L.polyline(latlngs(id), estilo)
+        L.polyline(latlngs(id), estilos[i.tipo])
           .bindPopup(textoPopup(i, calles[id].properties.nombre))
           .addTo(capaInformes);
       });
@@ -116,6 +126,7 @@ function dibujarInformes() {
 /* ---------- Pestaña Informar ---------- */
 
 const form = document.getElementById("formulario");
+const cantidadGeneral = form.elements.cantidad.placeholder;  // antes de elegir tipo
 const mapaInformar = crearMapa("mapa-informar");
 const buscar = document.getElementById("buscar");
 const todaCalle = document.getElementById("toda-calle");
@@ -147,6 +158,7 @@ function actualizarSeleccion(texto) {
 function cambiarTipo() {
   const modo = form.elements.tipo.value === "panfletos" ? "punto" : "calle";
   form.dataset.modo = modo;
+  form.elements.cantidad.placeholder = CANTIDADES[form.elements.tipo.value];
   if (modo === "punto") {
     seleccion.clear();
     capaCalles.remove();
@@ -190,6 +202,7 @@ function reiniciarFormulario() {
   form.reset();
   form.elements.fecha.value = hoy();
   delete form.dataset.modo;
+  form.elements.cantidad.placeholder = cantidadGeneral;
   seleccion.clear();
   quitarPunto();
   capaCalles.remove();
@@ -244,8 +257,8 @@ form.addEventListener("submit", async e => {
   e.preventDefault();
   const tipo = form.elements.tipo.value;
   const error =
-    !tipo ? "Elige qué hiciste." :
-    tipo === "panfletos" && !marcador ? "Marca en el mapa dónde repartiste los panfletos." :
+    !tipo ? "Elige qué vas a reportar." :
+    tipo === "panfletos" && !marcador ? "Marca en el mapa dónde se repartieron los panfletos." :
     tipo !== "panfletos" && !seleccion.size ? "Marca en el mapa al menos un tramo de calle." :
     !form.elements.fecha.value ? "Indica la fecha." : "";
   if (error) return avisar(error, "error");

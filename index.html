@@ -21,7 +21,8 @@
     <section id="vista-mapa" class="vista">
       <div class="filtros">
         <div class="tipos">
-          <label><input type="checkbox" name="capa" value="carteles" checked><span class="carteles">Carteles en comercios</span></label>
+          <label><input type="checkbox" name="capa" value="carteles" checked><span class="carteles">Comercios (carteles, huelga, ...)</span></label>
+          <label><input type="checkbox" name="capa" value="carteles_calle" checked><span class="carteles_calle">Carteles en la calle</span></label>
           <label><input type="checkbox" name="capa" value="buzoneo" checked><span class="buzoneo">Buzoneo</span></label>
           <label><input type="checkbox" name="capa" value="panfletos" checked><span class="panfletos">Panfletos</span></label>
         </div>
@@ -37,17 +38,18 @@
 
     <section id="vista-informar" class="vista">
       <form id="formulario" novalidate>
-        <h2>1. ¿Qué hiciste?</h2>
+        <h2>1. ¿Qué vas a reportar?</h2>
         <div class="tipos">
-          <label><input type="radio" name="tipo" value="carteles"><span class="carteles">Carteles en comercios</span></label>
+          <label><input type="radio" name="tipo" value="carteles"><span class="carteles">Comercios (carteles, huelga, ...)</span></label>
+          <label><input type="radio" name="tipo" value="carteles_calle"><span class="carteles_calle">Carteles en la calle</span></label>
           <label><input type="radio" name="tipo" value="buzoneo"><span class="buzoneo">Buzoneo</span></label>
           <label><input type="radio" name="tipo" value="panfletos"><span class="panfletos">Panfletos</span></label>
         </div>
 
         <h2>2. ¿Dónde?</h2>
-        <p class="ayuda solo-nada">Elige primero qué hiciste.</p>
-        <p class="ayuda solo-calle">Toca en el mapa los tramos de calle donde lo hiciste, o busca la calle.</p>
-        <p class="ayuda solo-punto">Toca en el mapa el sitio donde repartiste los panfletos.</p>
+        <p class="ayuda solo-nada">Elige primero qué vas a reportar.</p>
+        <p class="ayuda solo-calle">Toca en el mapa los tramos de calle que quieres reportar, o busca la calle.</p>
+        <p class="ayuda solo-punto">Toca en el mapa el sitio donde se repartieron los panfletos.</p>
         <div class="fila solo-calle">
           <input id="buscar" list="lista-calles" placeholder="Buscar calle…" autocomplete="off">
           <datalist id="lista-calles"></datalist>
@@ -68,7 +70,7 @@
         <h2>4. Detalles <small>(opcional)</small></h2>
         <label class="campo">Cantidad
           <input type="number" name="cantidad" min="1" max="100000" inputmode="numeric"
-                 placeholder="Nº de carteles, cartas o panfletos">
+                 placeholder="Nº de comercios, carteles, cartas o panfletos">
         </label>
         <label class="campo">Nota <small>(esta información es pública)</small>
           <textarea name="nota" maxlength="200" rows="2" placeholder="Ej.: todos los portales hasta la plaza"></textarea>

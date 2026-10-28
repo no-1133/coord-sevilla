@@ -1,5 +1,6 @@
 :root {
   --carteles: #e8710a;
+  --carteles_calle: #9334e6;
   --buzoneo: #1a73e8;
   --panfletos: #188038;
   --borde: #d0d0d0;
@@ -107,6 +108,7 @@ main { flex: 1; min-height: 0; }
   border-radius: 50%;
 }
 .tipos .carteles::before { background: var(--carteles); }
+.tipos .carteles_calle::before { background: var(--carteles_calle); }
 .tipos .buzoneo::before { background: var(--buzoneo); }
 .tipos .panfletos::before { background: var(--panfletos); }
 .tipos input:checked + span { border-color: var(--texto); background: #f3f3f3; }
